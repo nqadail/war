@@ -59,3 +59,9 @@ docker-compose build
 and then:
 
 bin/dev-start to start a bash shell inside
+
+NOTE: thie first time this is run, you will need to create the SQLite database:
+
+rails db:migrate
+
+from within the container.
