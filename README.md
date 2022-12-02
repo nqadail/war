@@ -46,6 +46,8 @@ All of the code of interest is in app/domains/war
 
 Additionally, very basic ActiveRecord is used with sql preferred for complex queries (sanitized for user input via temporary prepared statements, which is not necessary in this case). Upserts are done with ActiveRecord.
 
+The game test is flickering due to the randomization of the pile added to bottom the winner's stack. This randomization was necessary as sometimes games would run forever without it. This may be a deficiency with my algorithm.
+
 ## Notes on Docker
 
 This app is fully containerized for development using docker. Since I am using SqLite3, everything can be self-contained in a single container. The container starts up in a bash shell to make development easier via the bin/dev-start shell script. The bin/server script starts up the rails app. The dockerfile is also set up to read the source files from the host machine such that editing and git interaction does not need to happen inside the container.
