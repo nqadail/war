@@ -25,8 +25,9 @@ module War
           end
           
           win.save!
-
-          game
+          {
+            game: game
+          }
         end
       end
     end

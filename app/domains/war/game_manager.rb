@@ -17,7 +17,7 @@ module War
       
       @playerA = Player.new(deal.keys[0], deal[deal.keys[0]])
       @playerB = Player.new(deal.keys[1], deal[deal.keys[1]])
-      
+
       @cards_played = [] # per 'round'
       @game_winner = nil
     end
@@ -114,7 +114,15 @@ module War
             score_round
           end
         else
-          @cards_played.shuffle!
+          # shuffling the cards put to the bottom of the deck ensures there won't
+          # be games that never finish. perhaps there is a bug in my algorithm,
+          # but putting the cards at the bottom without shuffling ensures the 
+          # same order which occasionally results in games that don't finish.
+          #
+          # Unfortunately, this makes writing tests for the game to be very 
+          # difficult (or impossible)
+          
+          @cards_played.shuffle! 
 
           append_action(
             "#{hand_winner.email} moves " + 

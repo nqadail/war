@@ -45,3 +45,15 @@ The system is implemented with domain driven design to allow simple decoupling i
 All of the code of interest is in app/domains/war
 
 Additionally, very basic ActiveRecord is used with sql preferred for complex queries (sanitized for user input via temporary prepared statements, which is not necessary in this case). Upserts are done with ActiveRecord.
+
+## Notes on Docker
+
+This app is fully containerized for development using docker. Since I am using SqLite3, everything can be self-contained in a single container. The container starts up in a bash shell to make development easier via the bin/dev-start shell script. The bin/server script starts up the rails app. The dockerfile is also set up to read the source files from the host machine such that editing and git interaction does not need to happen inside the container.
+
+All that is necessary to build the container is:
+
+docker-compose build
+
+and then:
+
+bin/dev-start to start a bash shell inside
